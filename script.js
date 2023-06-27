@@ -7,6 +7,10 @@ let statusDisplay = document.querySelector('#status-head');
 let moveDisplays = document.querySelectorAll('.move-display h2');
 let buttons = document.querySelectorAll('button');
 
+let playAgainButton = document.createElement('button');
+playAgainButton.innerHTML= 'Play Again!';
+playAgainButton.style.display = 'none';
+
 function calcResult(move1,move2){
     if(move1 === move2){
         return tieMsg;
@@ -41,6 +45,12 @@ function endGame(){
         buttons[i].style.display = "none";
         buttons[i].removeEventListener('click',playRound);
     }
+    playAgainButton.style.display = 'inline-block';
+    playAgainButton.addEventListener('click',restartGame);
+}
+
+function restartGame(){
+    startGame()
 }
 
 function playRound(event){
@@ -55,3 +65,4 @@ function playRound(event){
 }
 
 startGame();
+document.querySelector('.game-button-wrapper').appendChild(playAgainButton);
